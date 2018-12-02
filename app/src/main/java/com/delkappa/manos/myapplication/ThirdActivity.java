@@ -14,18 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.Button;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,48 +43,20 @@ public class ThirdActivity extends AppCompatActivity {
 
         EVENTS_FILE_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/events.txt";
 
-        /*
-        db = new DatabaseHandler(this);
-        // db.onUpgrade();
-        db.getAllRows(db.getReadableDatabase());
-        //db.onCreate(db);
-        // Clear the events for testing purposes.
-        // db.clear();
-        // if (new File(EVENTS_FILE_PATH).exists()) {
-        //     Log.d(TAG, "Deleting file...");
-        //     new File(EVENTS_FILE_PATH).delete();
-        // }
-        */
-// ...
-
-        mDatabase = FirebaseDatabase.getInstance().getReference("message/users/");
-
-
-        // mDatabase.setValue("Hello, World!");
-        //final int i = 0;
-        /*
-        Button myButton = new Button(this);
-        myButton.setText("Push Me");
-        setContentView(myButton);
-        */
-        final Post [] posts = new Post[10];
+        mDatabase = FirebaseDatabase.getInstance().getReference("Departments");
+        final Department [] departments = new Department[10] ;
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                /*
-                Post post = dataSnapshot.getValue(Post.class);
-                System.out.println(post);
-                Log.i("posttEST",post.toString());
-                */
-                //test();
                 int i = 0;
                 for(DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
-                    Post post = singleSnapshot.getValue(Post.class);
-                    posts[i] = post;
-                    test(post, i);
+                    // Department department = singleSnapshot.getValue(Department.class);
+                    Department department = singleSnapshot.getValue(Department.class);
+                    //departments[i] = department;
+                    // Log.i("DEPARTMENT", department.toString());
+                    generateDepartmentButtons(department, i);
                     i++;
-                    //Log.i("posttEST",post.toString());
                 }
             }
 
@@ -101,44 +65,12 @@ public class ThirdActivity extends AppCompatActivity {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
-        /*
-        for (int j = 0; j < 5; j++) {
-            Log.i("ttt","dze");
-            Log.i("posttEST",posts[0].toString());
-            Button myButton = new Button(this);
-            myButton.setText(posts[j].deptID);
 
-            //this.findViewById(android.R.id.content);
-            LinearLayout parent = findViewById(R.id.mainLinearLayout);
-            parent.addView(myButton,j);
-        }
-        */
         /*
         mDatabase.child("users").child("0001").child("userID").setValue("user0001");
         mDatabase.child("users").child("0001").child("userName").setValue("name01");
         mDatabase.child("users").child("0001").child("userFirstName").setValue("firstname01");
         mDatabase.child("users").child("0001").child("deptID").setValue("dept01");
-
-        mDatabase.child("users").child("0002").child("userID").setValue("user0002");
-        mDatabase.child("users").child("0002").child("userName").setValue("name02");
-        mDatabase.child("users").child("0002").child("userFirstName").setValue("firstname02");
-        mDatabase.child("users").child("0002").child("deptID").setValue("dept02");
-
-        mDatabase.child("users").child("0003").child("userID").setValue("user0003");
-        mDatabase.child("users").child("0003").child("userName").setValue("name03");
-        mDatabase.child("users").child("0003").child("userFirstName").setValue("firstname03");
-        mDatabase.child("users").child("0003").child("deptID").setValue("dept03");
-
-        mDatabase.child("users").child("0004").child("0004").child("userID").setValue("user0004");
-        mDatabase.child("users").child("0004").child("userName").setValue("name04");
-        mDatabase.child("users").child("0004").child("userFirstName").setValue("firstname04");
-        mDatabase.child("users").child("0004").child("deptID").setValue("dept04");
-
-        mDatabase.child("users").child("0005").child("userID").setValue("user0005");
-        mDatabase.child("users").child("0005").child("userName").setValue("name05");
-        mDatabase.child("users").child("0005").child("userFirstName").setValue("firstname05");
-        mDatabase.child("users").child("0005").child("deptID").setValue("dept05");
-
         */
         Log.i("testFire","Fiiiiiire ! ");
         // Ask for permission.
@@ -179,12 +111,31 @@ public class ThirdActivity extends AppCompatActivity {
         }
     }
 
-    public void test(Post post, int j) {
+    public void generateDepartmentButtons(final Department department, int j) {
         Log.i("ttt","dze");
-        Log.i("posttEST",post.toString());
+        Log.i("posttEST",department.toString());
         Button myButton = new Button(this);
-        myButton.setText(post.deptID);
+        myButton.setText(department.toString());
 
+        myButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+                Log.i("MessageButton","Yeah");
+
+                String srcRepository = "com.delkappa.manos.myapplication.";
+                String departmentName = department.toString()+"Activity";
+                String activityToStart = srcRepository + departmentName;
+                Intent intent;
+                try {
+                    Class<?> c = Class.forName(activityToStart);
+                    intent = new Intent(ThirdActivity.this, c);
+                    Log.i("testNAME", activityToStart);
+                    startActivity(intent);
+                } catch (ClassNotFoundException ignored) {
+                    Log.i("EXCEPTIONOFDEATH", activityToStart);
+                }
+            }
+        });
         //this.findViewById(android.R.id.content);
         LinearLayout parent = findViewById(R.id.mainLinearLayout);
         parent.addView(myButton,j);
@@ -294,7 +245,7 @@ public class ThirdActivity extends AppCompatActivity {
 
     public void firstDepartment(View view) {
         // Create an intent for the activity
-        Intent i = new Intent(this, FirstDepartmentActivity.class);
+        Intent i = new Intent(this, DirectionActivity.class);
 
         // Start the activity
         startActivity(i);

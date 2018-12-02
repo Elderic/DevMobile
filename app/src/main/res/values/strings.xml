@@ -7,4 +7,8 @@
     <string name="title_activity_second_department">secondDepartmentActivity</string>
     <string name="title_activity_third_department">thirdDepartmentActivity</string>
     <string name="title_activity_first_department">FirstDepartmentActivity</string>
+    <string name="title_activity_itsupport">ITSupportActivity</string>
+    <string name="title_activity_administration">Administration</string>
+    <string name="title_activity_communication">CommunicationActivity</string>
+    <string name="title_activity_informatique">InformatiqueActivity</string>
 </resources>
