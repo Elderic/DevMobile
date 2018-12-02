@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "127143378763",
+    "firebase_url": "https://workbook-348f1.firebaseio.com",
+    "project_id": "workbook-348f1",
+    "storage_bucket": "workbook-348f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127143378763:android:941720506da07e78",
+        "android_client_info": {
+          "package_name": "com.delkappa.manos.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127143378763-jgefc3jmaa95ovkiruva6dva7cjptnvu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaRbMbtImL5o2jF5ko3VQ7wIKGUM3kppQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

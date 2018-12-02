@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <string name="user_name">user name</string>
+    <string name="user_email">user email</string>
+    <string name="title_activity_first_departement">firstDepartementActivity</string>
+    <string name="title_activity_second_department">secondDepartmentActivity</string>
+    <string name="title_activity_third_department">thirdDepartmentActivity</string>
+    <string name="title_activity_first_department">FirstDepartmentActivity</string>
+</resources>
