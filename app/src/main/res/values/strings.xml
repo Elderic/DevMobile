@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Workbook</string>
 
     <string name="user_name">user name</string>
     <string name="user_email">user email</string>
@@ -11,4 +11,36 @@
     <string name="title_activity_administration">Administration</string>
     <string name="title_activity_communication">CommunicationActivity</string>
     <string name="title_activity_informatique">InformatiqueActivity</string>
+    <string name="action_setting">Settings</string>
+    <string name="login">Se connecter</string>
+    <string name="register">S\'inscrire</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="register_title">inscription</string>
+    <string name="pseudo">Pseudo</string>
+    <string name="email">Email</string>
+    <string name="password">Mot de passe</string>
+    <string name="password2">Retaper votre mot de passe</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="login_title">Connexion</string>
+    <string name="title_activity_premiere">PremiereActivity</string>
+    <string name="logout">Deconnexion</string>
+    <string name="title_activity_register_main">Register</string>
+    <!-- Strings related to login -->
+    <string name="prompt_firstName">Firstname</string>
+    <string name="prompt_name">Name</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_login">Login</string>
+    <string name="prompt_phoneNumber">Phone Number</string>
+    <string name="prompt_department">Departement :</string>
+    <string name="action_register">Register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_message">messageActivity</string>
 </resources>

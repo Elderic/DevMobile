@@ -1,7 +1,9 @@
 package com.delkappa.manos.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,9 +22,10 @@ public class GUIManager {
         return instance;
     }
 
-    public void generateUsersButtons(User user, int j, Context context, View view) {
+    public void generateUsersButtons(User user, int j, Context context, View view, final String departmentName ) {
         LinearLayout parent = view.findViewById(R.id.mainLinearLayout);
 
+        final User userScope = user;
         StringBuffer textToSet = new StringBuffer();
         Log.i("ttt","dze");
         Log.i("posttEST",user.toString());
@@ -50,6 +53,14 @@ public class GUIManager {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
                 Log.i("MessageButton","Yeah");
+                Intent mIntent = new Intent(v.getContext(), MessageActivity.class);
+                Bundle mBundle = new Bundle();
+                mBundle.putString("DepartmentName", departmentName);
+                mBundle.putString("Number", userScope.getPhoneNumber());
+                mIntent.putExtras(mBundle);
+                mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Log.i("INTENTTESTCONTEXT", v.getContext().toString());
+                v.getContext().startActivity(mIntent);
                 /*
                 String srcRepository = "com.delkappa.manos.myapplication.";
                 String departmentName = department.toString()+"Activity";

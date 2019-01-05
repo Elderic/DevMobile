@@ -1,7 +1,5 @@
 package com.delkappa.manos.myapplication;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,8 +27,10 @@ public class DirectionActivity extends AppCompatActivity {
 
         guiManager = GUIManager.getInstance();
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("Direction");
-
+        // mDatabase = FirebaseDatabase.getInstance().getReference("Direction");
+        final String departmentName = getIntent().getExtras().getString("DepartmentName");
+        mDatabase = FirebaseDatabase.getInstance().getReference(departmentName);
+        Log.i("depNameBundle", departmentName);
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -47,7 +45,7 @@ public class DirectionActivity extends AppCompatActivity {
                     //departments[i] = department;
                     Log.i("DEPARTMENT", user.toString());
 
-                    guiManager.generateUsersButtons(user, i, DirectionActivity.this, findViewById(android.R.id.content).getRootView());
+                    guiManager.generateUsersButtons(user, i, DirectionActivity.this, findViewById(android.R.id.content).getRootView(), departmentName);
                     i++;
                 }
             }
